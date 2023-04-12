@@ -1,0 +1,204 @@
+//Record of students in c.
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+struct stu
+{
+int roll;
+char name[20];
+int phy,che,mat;
+};
+void input(struct stu s[],int);
+void display(struct stu s[],int);
+void sort_r(struct stu s[],int);
+void sort_p(struct stu s[],int);
+void sort_c(struct stu s[],int);
+void sort_m(struct stu s[],int);
+void sort_n(struct stu s[],int);
+void mysearch(struct stu s[],int);
+void main()
+{
+//clrscr();
+struct stu s[20];
+int choice,n=3;
+printf("enter no.of stu ");
+scanf("%d",&n);
+input(s, n);
+printf("1=>\tshort by roll\n2=>\tshort by phymarks\n3=>\tshort by chemarks\n4=>\tshort by matmarks\n5=>\tshort by name\n6=>\tshearch by roll no.\n");
+printf("enter 1 choice");
+scanf("%d",&choice);
+switch (choice)
+{
+case 1 :printf("\n**********/record after sorted by roll no./**********");
+         sort_r(s, n);
+        	display(s, n);
+	         break;
+case 2 : printf("\n**********/record after sorted by phys marks/**********");
+          sort_p(s, n);
+	        	display(s, n);
+	         break;
+case 3 : printf("\n**********/record after sorted by chem marks/**********");
+            sort_c(s, n);
+	        	display(s, n);
+	         break;
+case 4 : printf("\n**********/record after sorted by math marks/**********");
+         sort_m(s, n);
+       		display(s, n);
+         break;
+case 5 : printf("\n**********/record after sorted by name/**********");
+         sort_n(s, n);
+         display(s, n);
+	         break;
+case 6 : printf("\n********/searching details of a student by roll no./*********");
+         mysearch(s, n);
+         break;
+default : break;
+}
+getch();
+}
+void input(struct stu s[],int n)
+{
+int i;
+for(i=0;i<n;i++)
+	{
+		printf("enter roll ");
+		scanf("%d",&s[i].roll);
+		printf("enter name ");
+		scanf("%s",&s[i].name);
+	
+		printf("enter phy ");
+			if(s[i].phy<100)
+		{
+		scanf("%d",&s[i].phy);
+		}
+		
+		else
+		{ printf("not possible");}
+		
+		printf("enter che ");
+		if(s[i].che<100)
+		{
+		scanf("%d",&s[i].che);
+		}
+		else
+		{printf("lier!!!!!");}
+		
+		printf("enter mat ");
+		if(s[i].mat<100)
+		{
+		scanf("%d",&s[i].mat);
+		}
+		else
+		{ printf("lier !!!!!!!!!!");}
+	}
+}
+void display(struct stu s[], int n)
+{
+int i;
+printf("\nroll no.  name\t phys marks\t chem marks\t math marks\n\n");
+for(i=0;i<n;i++)
+printf("\n%d\t  %s\t   %d\t\t   %d\t\t   %d\n",s[i].roll,s[i].name,s[i].phy,s[i].che,s[i].mat);
+}
+void sort_r(struct stu s[], int n)
+{
+struct stu t;
+int i,j,choice;
+for(i=0;i<n-1;i++)
+{
+   for(j=0;j<n-i-1;j++)
+   { 
+	       if(s[j].roll>s[j+1].roll)
+	           {
+		            t=s[j];
+	            	s[j]=s[j+1];
+	            	s[j+1]=t;
+	           }
+    }
+}
+}
+void sort_p(struct stu s[], int n)
+{
+struct stu t;
+int i,j,choice;
+for(i=0;i<n-1;i++)
+{
+   for(j=0;j<n-i-1;j++)
+   { 
+	       if(s[j].phy<s[j+1].phy)
+	           {
+		            t=s[j];
+	            	s[j]=s[j+1];
+	            	s[j+1]=t;
+	           }
+    }
+}
+}
+void sort_c(struct stu s[], int n)
+{
+struct stu t;
+int i,j,choice;
+for(i=0;i<n-1;i++)
+{
+   for(j=0;j<n-i-1;j++)
+   { 
+	       if(s[j].che<s[j+1].che)
+	           {
+		            t=s[j];
+	            	s[j]=s[j+1];
+	            	s[j+1]=t;
+	           }
+    }
+}
+}
+void sort_m(struct stu s[], int n)
+{
+struct stu t;
+int i,j,choice;
+for(i=0;i<n-1;i++)
+{
+   for(j=0;j<n-i-1;j++)
+   { 
+	       if(s[j].mat<s[j+1].mat)
+	           {
+		            t=s[j];
+	            	s[j]=s[j+1];
+	            	s[j+1]=t;
+	           }
+    }
+}
+}
+void sort_n(struct stu s[], int n)
+{
+struct stu t;
+int i,j,choice;
+for(i=0;i<n-1;i++)
+{
+   for(j=i+1;j<n;j++)
+   { 
+	       if(strcmp(s[i].name,s[j].name)>0)
+	           {
+		            t=s[i];
+	            	s[i]=s[j];
+	            	s[j]=t;
+	           }
+    }
+}
+}
+void mysearch(struct stu s[], int n)
+{
+int search,i;
+printf("enter the roll no. whose detail you want to search\n");
+scanf("%d",&search);
+for(i=0;i<n;i++)
+  {
+     if(s[i].roll==search)
+     {
+        printf("student roll is %d\n",s[i].roll);
+        printf("student name is %s\n",s[i].name);
+        printf("student phy marks is %d\n",s[i].phy);
+        printf("student che marks is %d\n",s[i].che);
+        printf("student mat marks is %d\n",s[i].mat);
+     }
+  }
+}
+
